@@ -1,0 +1,370 @@
+.static {
+  position: static
+}
+
+.absolute {
+  position: absolute
+}
+
+.inset-x-1\/4 {
+  left: 25%;
+  right: 25%
+}
+
+.inset-y-10 {
+  top: 2.5rem;
+  bottom: 2.5rem
+}
+
+.inset-y-36 {
+  top: 9rem;
+  bottom: 9rem
+}
+
+.bottom-0 {
+  bottom: 0px
+}
+
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem
+}
+
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem
+}
+
+.-my-3 {
+  margin-top: -0.75rem;
+  margin-bottom: -0.75rem
+}
+
+.-mx-5 {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem
+}
+
+.mr-5 {
+  margin-right: 1.25rem
+}
+
+.ml-5 {
+  margin-left: 1.25rem
+}
+
+.mb-4 {
+  margin-bottom: 1rem
+}
+
+.mt-5 {
+  margin-top: 1.25rem
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem
+}
+
+.mr-2 {
+  margin-right: 0.5rem
+}
+
+.ml-2 {
+  margin-left: 0.5rem
+}
+
+.flex {
+  display: flex
+}
+
+.h-1\/2 {
+  height: 50%
+}
+
+.h-full {
+  height: 100%
+}
+
+.h-3\/4 {
+  height: 75%
+}
+
+.h-1\/3 {
+  height: 33.333333%
+}
+
+.h-72 {
+  height: 18rem
+}
+
+.w-full {
+  width: 100%
+}
+
+.w-3\/4 {
+  width: 75%
+}
+
+.w-2\/3 {
+  width: 66.666667%
+}
+
+.w-3\/5 {
+  width: 60%
+}
+
+.w-1\/2 {
+  width: 50%
+}
+
+.flex-1 {
+  flex: 1 1 0%
+}
+
+.shrink {
+  flex-shrink: 1
+}
+
+.grow {
+  flex-grow: 1
+}
+
+.flex-row {
+  flex-direction: row
+}
+
+.items-end {
+  align-items: flex-end
+}
+
+.items-center {
+  align-items: center
+}
+
+.justify-between {
+  justify-content: space-between
+}
+
+.justify-evenly {
+  justify-content: space-evenly
+}
+
+.self-center {
+  align-self: center
+}
+
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal
+}
+
+.break-words {
+  overflow-wrap: break-word
+}
+
+.break-all {
+  word-break: break-all
+}
+
+.rounded {
+  border-radius: 0.25rem
+}
+
+.rounded-md {
+  border-radius: 0.375rem
+}
+
+.border {
+  border-width: 1px
+}
+
+.border-l {
+  border-left-width: 1px
+}
+
+.border-t {
+  border-top-width: 1px
+}
+
+.border-r {
+  border-right-width: 1px
+}
+
+.border-b {
+  border-bottom-width: 1px
+}
+
+.border-stroke {
+  --tw-border-opacity: 1;
+  border-color: rgb(227 227 230 / var(--tw-border-opacity))
+}
+
+.bg-background {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 148 26 / var(--tw-bg-opacity))
+}
+
+.bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(88 86 102 / var(--tw-bg-opacity))
+}
+
+.bg-shape {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 250 252 / var(--tw-bg-opacity))
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity))
+}
+
+.bg-body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(112 110 122 / var(--tw-bg-opacity))
+}
+
+.p-3 {
+  padding: 0.75rem
+}
+
+.p-4 {
+  padding: 1rem
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem
+}
+
+.pt-4 {
+  padding-top: 1rem
+}
+
+.pl-3 {
+  padding-left: 0.75rem
+}
+
+.text-center {
+  text-align: center
+}
+
+.font-lexend {
+  font-family: LexendDeca
+}
+
+.font-inter {
+  font-family: Inter
+}
+
+.text-32 {
+  font-size: 32px
+}
+
+.text-20 {
+  font-size: 20px
+}
+
+.text-17 {
+  font-size: 17px
+}
+
+.text-16 {
+  font-size: 16px
+}
+
+.text-15 {
+  font-size: 15px
+}
+
+.text-13 {
+  font-size: 13px
+}
+
+.font-semibold {
+  font-weight: 600
+}
+
+.font-normal {
+  font-weight: 400
+}
+
+.font-bold {
+  font-weight: 700
+}
+
+.text-heading {
+  --tw-text-opacity: 1;
+  color: rgb(88 86 102 / var(--tw-text-opacity))
+}
+
+.text-background {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(255 148 26 / var(--tw-text-opacity))
+}
+
+.text-grey {
+  --tw-text-opacity: 1;
+  color: rgb(88 86 102 / var(--tw-text-opacity))
+}
+
+.text-body {
+  --tw-text-opacity: 1;
+  color: rgb(112 110 122 / var(--tw-text-opacity))
+}
+
+.text-shape {
+  --tw-text-opacity: 1;
+  color: rgb(250 250 252 / var(--tw-text-opacity))
+}
+
+.outline {
+  outline-style: solid
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
