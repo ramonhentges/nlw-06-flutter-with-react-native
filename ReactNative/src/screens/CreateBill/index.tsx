@@ -36,8 +36,7 @@ export const CreateBill = () => {
       />
     ),
     [CreateBillSteps.FillData]: (
-      <KeyboardAwareScrollView>
-        <View style={tailwind('px-5 grow')}>
+      <KeyboardAwareScrollView contentContainerStyle={tailwind('px-5 grow')}>
           <Text
             style={tailwind(
               `${TextStyles.titleBoldHeading} self-center w-2/3 text-center mb-4`,
@@ -48,7 +47,6 @@ export const CreateBill = () => {
             initialValues={initialValues}
             handleSuccess={handleCreated}
           />
-        </View>
       </KeyboardAwareScrollView>
     ),
   };
