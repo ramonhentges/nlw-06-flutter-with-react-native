@@ -7,3 +7,5 @@ export * from './Forms';
 export * from './TextFields';
 export * from './BarcodeScanner';
 export * from './PayBill';
+export * from './StatusBar';
+export * from './HelperText';

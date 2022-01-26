@@ -20,13 +20,21 @@ export const BillStatus = ({ bill, onPress }: BillStatusProps) => {
             </Text>
           </Text>
         </View>
-        <View>
+        <View style={tailwind('items-end')}>
           <Text style={tailwind(`${TextStyles.trailingRegular}`)}>
             {'R$ '}
             <Text style={tailwind(`${TextStyles.trailingBold}`)}>
-              {bill.value.toString().replace('.', ',')}
+              {bill.formatedValue()}
             </Text>
           </Text>
+          {bill.payDate && (
+            <Text style={tailwind(`${TextStyles.captionBody}`)}>
+              {'Pago em '}
+              <Text style={tailwind(`${TextStyles.captionBoldBody}`)}>
+                {bill.payDate.toLocaleDateString()}
+              </Text>
+            </Text>
+          )}
         </View>
       </View>
     </TouchableOpacity>

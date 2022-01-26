@@ -5,9 +5,15 @@ import database from '@react-native-firebase/database';
 import { billToFirebase, firebaseToBill } from '../converter';
 import auth from '@react-native-firebase/auth';
 
-const userId = auth().currentUser?.uid || '';
+let userId = '';
 
-const billsRef = database().ref('bills').child(userId);
+let billsRef = database().ref('bills').child(userId);
+
+auth().onAuthStateChanged(user => {
+  useBillStore.getState().resetStore();
+  userId = user?.uid || '';
+  billsRef = database().ref('bills').child(userId);
+});
 
 export const useBillStore = create<BillStoreProps>(set => ({
   paidBills: [],
@@ -54,6 +60,15 @@ export const useBillStore = create<BillStoreProps>(set => ({
     }));
     return { status: 'ok', data: bill };
   },
+  removeBill: (bill: Bill) => {
+    bill.payDate = new Date();
+    billsRef.child(bill.id).remove();
+    set(state => ({
+      paidBills: state.paidBills.filter(val => val.id !== bill.id),
+      unpaidBills: state.unpaidBills.filter(val => val.id !== bill.id),
+    }));
+    return { status: 'ok', data: bill };
+  },
 }));
 
 type BillStoreProps = {
@@ -63,4 +78,5 @@ type BillStoreProps = {
   getBills: () => void;
   resetStore: () => void;
   payBill: (bill: Bill) => Response;
+  removeBill: (bill: Bill) => Response;
 };

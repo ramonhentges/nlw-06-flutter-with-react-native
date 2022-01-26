@@ -12,9 +12,9 @@ export const Header = () => {
     <View style={tailwind('bg-primary px-4 py-6')}>
       <View style={tailwind('flex-row justify-between items-center')}>
         <View>
-          <Text style={tailwind(`${TextStyles.titleRegular}`)}>
+          <Text style={tailwind(`${TextStyles.titleLight}`)}>
             {'Olá, '}
-            <Text style={tailwind(`${TextStyles.titleRegular} font-semibold`)}>
+            <Text style={tailwind(`${TextStyles.titleRegular}`)}>
               {user?.fullName}
             </Text>
           </Text>

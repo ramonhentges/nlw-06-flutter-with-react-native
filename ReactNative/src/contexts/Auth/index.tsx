@@ -81,8 +81,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     GoogleSignin.configure({
       scopes: ['email'], // what API you want to access on behalf of the user, default is email and profile
-      webClientId:
-        Config.WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
+      webClientId: Config.WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
       offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     });
   }, []);

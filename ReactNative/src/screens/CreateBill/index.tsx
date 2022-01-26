@@ -1,9 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useTailwind } from 'tailwind-rn/dist';
-import { BarcodeInfoProps, BarcodeScanner, BillForm } from '../../components';
+import {
+  BarcodeInfoProps,
+  BarcodeScanner,
+  BillForm,
+  StatusBar,
+} from '../../components';
 import { TextStyles } from '../../themes';
 
 export const CreateBill = () => {
@@ -37,20 +42,22 @@ export const CreateBill = () => {
     ),
     [CreateBillSteps.FillData]: (
       <KeyboardAwareScrollView contentContainerStyle={tailwind('px-5 grow')}>
-          <Text
-            style={tailwind(
-              `${TextStyles.titleBoldHeading} self-center w-2/3 text-center mb-4`,
-            )}>
-            Preencha os dados do boleto
-          </Text>
-          <BillForm
-            initialValues={initialValues}
-            handleSuccess={handleCreated}
-          />
+        <Text
+          style={tailwind(
+            `${TextStyles.titleBoldHeading} self-center w-2/3 text-center mb-4`,
+          )}>
+          Preencha os dados do boleto
+        </Text>
+        <BillForm initialValues={initialValues} handleSuccess={handleCreated} />
       </KeyboardAwareScrollView>
     ),
   };
-  return stepPage[step];
+  return (
+    <>
+      <StatusBar color="background" />
+      {stepPage[step]}
+    </>
+  );
 };
 
 enum CreateBillSteps {

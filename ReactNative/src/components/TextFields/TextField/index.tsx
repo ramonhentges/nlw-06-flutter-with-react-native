@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
@@ -15,6 +15,7 @@ export const TextField = ({
   className,
   onFocus,
   onBlur,
+  error = false,
   ...rest
 }: TextFieldProps) => {
   const tailwind = useTailwind();
@@ -23,7 +24,7 @@ export const TextField = ({
   const handleFocus = useCallback(
     (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsActive(true);
-      onFocus && onFocus(e);
+      onFocus?.(e);
     },
     [onFocus],
   );
@@ -31,30 +32,35 @@ export const TextField = ({
   const handleBlur = useCallback(
     (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsActive(false);
-      onBlur && onBlur(e);
+      onBlur?.(e);
     },
     [onBlur],
+  );
+
+  const borderColor = useMemo(
+    () => (error ? 'border-delete' : 'border-stroke'),
+    [error],
+  );
+
+  const iconStyle = useMemo(
+    () =>
+      error
+        ? tailwind('text-delete px-3')
+        : isActive
+        ? tailwind('text-primary px-3')
+        : tailwind('text-body px-3 '),
+    [error, isActive, tailwind],
   );
 
   return (
     <View
       style={tailwind(
-        'flex-row items-center border-b border-stroke ' + (className || ''),
+        `flex-row items-center border-b ${borderColor} ${className || ''}`,
       )}>
-      {startIcon && (
-        <Icon
-          style={
-            isActive
-              ? tailwind('text-primary px-3')
-              : tailwind('text-body px-3 ')
-          }
-          name={startIcon}
-          size={24}
-        />
-      )}
+      {startIcon && <Icon style={iconStyle} name={startIcon} size={24} />}
       <View
         style={tailwind(
-          `${TextStyles.input} pl-3 border-l border-stroke grow shrink`,
+          `${TextStyles.input} pl-3 border-l ${borderColor} grow shrink`,
         )}>
         <TextInput
           onFocus={handleFocus}
@@ -72,4 +78,5 @@ interface TextFieldProps extends TextInputProps {
   startIcon?: string;
   className?: string;
   prefix?: string;
+  error?: boolean;
 }

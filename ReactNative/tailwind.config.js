@@ -16,7 +16,9 @@ module.exports = {
       },
       fontFamily: {
         inter: ['Inter'],
-        lexend: ['LexendDeca'],
+        interBold: ['Inter_SemiBold'],
+        lexend: ['LexendDeca_SemiBold'],
+        lexendLight: ['LexendDeca_Light'],
       },
       fontSize: {
         32: ['32px'],
@@ -32,5 +34,10 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-  content: ['./src/**/*.{js,ts,tsx}'],
+  content: [
+    './src/screens/**/*.{js,ts,tsx}',
+    './src/components/**/*.{js,ts,tsx}',
+    './src/themes/**/*.{js,ts,tsx}',
+    './src/contexts/**/*.{js,ts,tsx}',
+  ],
 };

@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
 import {
   BarcodeInfoProps,
+  HelperText,
   MaskedTextField,
   OutlinedButton,
   TextField,
@@ -12,10 +13,11 @@ import { Bill } from '../../../entities';
 import { useBillForm } from '../../../hooks';
 
 export const BillForm = ({ initialValues, handleSuccess }: BillFormProps) => {
-  const { values, handleChange, handleSubmit } = useBillForm({
-    initialValues,
-    handleSuccess,
-  });
+  const { values, handleChange, handleSubmit, errors, touched, handleBlur } =
+    useBillForm({
+      initialValues,
+      handleSuccess,
+    });
   const tailwind = useTailwind();
   const navigation = useNavigation();
 
@@ -26,30 +28,57 @@ export const BillForm = ({ initialValues, handleSuccess }: BillFormProps) => {
         startIcon="file-document-outline"
         onChangeText={handleChange('name')}
         placeholder="Nome do boleto"
-        className="mb-4"
+        error={touched.name && Boolean(errors.name)}
+        onBlur={handleBlur('name')}
       />
+      <HelperText
+        text={touched.name && errors.name}
+        className="mb-2"
+        error={true}
+      />
+
       <MaskedTextField
         value={values.dueDate}
         startIcon="close-circle-outline"
         onChangeText={handleChange('dueDate')}
         placeholder="Vencimento"
-        className="mb-4"
-        mask="[99]/[99]/[99]"
+        mask="[99]/[99]/[9999]"
+        error={touched.dueDate && Boolean(errors.dueDate)}
+        onBlur={handleBlur('dueDate')}
       />
+      <HelperText
+        text={touched.dueDate && errors.dueDate}
+        className="mb-2"
+        error={true}
+      />
+
       <MaskedTextField
         value={values.value}
         startIcon="cash"
         onChangeText={handleChange('value')}
         placeholder="Valor"
-        className="mb-4"
         mask="R$ [999990],[00]"
+        error={touched.value && Boolean(errors.value)}
+        onBlur={handleBlur('value')}
       />
+      <HelperText
+        text={touched.value && errors.value}
+        className="mb-2"
+        error={true}
+      />
+
       <TextField
         value={values.barcode}
         startIcon="barcode"
         onChangeText={handleChange('barcode')}
         placeholder="Código"
-        className="mb-4"
+        error={touched.barcode && Boolean(errors.barcode)}
+        onBlur={handleBlur('barcode')}
+      />
+      <HelperText
+        text={touched.barcode && errors.barcode}
+        className="mb-2"
+        error={true}
       />
 
       <View style={tailwind('grow flex-row items-end -mx-5')}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
-import { BillStatus, BottomSheet } from '../../components';
+import { BillStatus, BottomSheet, StatusBar } from '../../components';
 import { useBillStore } from '../../stores';
 import { TextStyles } from '../../themes/text-styles';
 
@@ -11,6 +11,7 @@ export const Extract = () => {
 
   return (
     <>
+      <StatusBar />
       <View style={tailwind('bg-background h-full')}>
         <View style={tailwind('px-6 mt-5')}>
           <View style={tailwind('flex-row justify-between items-center')}>

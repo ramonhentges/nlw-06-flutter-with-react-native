@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { BarcodeInfoProps } from '../components';
+import { stringToDate } from '../converter';
 import { Bill } from '../entities';
 import { useBillStore } from '../stores';
 import { BillSchema } from '../validators';
@@ -21,7 +22,7 @@ export const useBillForm = ({
     onSubmit: values => {
       const bill = new Bill();
       bill.barcode = values.barcode;
-      bill.dueDate = new Date(values.dueDate);
+      bill.dueDate = stringToDate(values.dueDate);
       bill.name = values.name;
       bill.value = Number(values.value.replace('R$ ', '').replace(',', '.'));
 

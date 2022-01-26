@@ -1,7 +1,13 @@
 import React, { useRef } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
-import { BillStatus, BottomSheet, PayBill, ToPayInfo } from '../../components';
+import {
+  BillStatus,
+  BottomSheet,
+  PayBill,
+  StatusBar,
+  ToPayInfo,
+} from '../../components';
 import { useBillStore } from '../../stores';
 import { TextStyles } from '../../themes/text-styles';
 
@@ -11,6 +17,7 @@ export const Home = () => {
   const { unpaidBills } = useBillStore();
   return (
     <>
+      <StatusBar />
       <View style={tailwind('bg-background h-full')}>
         <ToPayInfo quantity={14} />
         <View style={tailwind('px-6 mt-5')}>
