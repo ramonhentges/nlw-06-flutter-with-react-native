@@ -18,7 +18,7 @@ export const BottomButton = ({
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={tailwind('pt-6 px-3')}>
       <Icon
         style={selected ? tailwind('text-primary') : tailwind('text-body')}
         name={getIconName()}

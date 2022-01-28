@@ -42,9 +42,10 @@ export const BillForm = ({ initialValues, handleSuccess }: BillFormProps) => {
         startIcon="close-circle-outline"
         onChangeText={handleChange('dueDate')}
         placeholder="Vencimento"
-        mask="[99]/[99]/[9999]"
+        mask="[00]{/}[00]{/}[0000]"
         error={touched.dueDate && Boolean(errors.dueDate)}
         onBlur={handleBlur('dueDate')}
+        keyboardType="numeric"
       />
       <HelperText
         text={touched.dueDate && errors.dueDate}
@@ -57,9 +58,10 @@ export const BillForm = ({ initialValues, handleSuccess }: BillFormProps) => {
         startIcon="cash"
         onChangeText={handleChange('value')}
         placeholder="Valor"
-        mask="R$ [999990],[00]"
+        mask="R$ [999990]{,}[00]"
         error={touched.value && Boolean(errors.value)}
         onBlur={handleBlur('value')}
+        keyboardType="numeric"
       />
       <HelperText
         text={touched.value && errors.value}
@@ -74,6 +76,7 @@ export const BillForm = ({ initialValues, handleSuccess }: BillFormProps) => {
         placeholder="Código"
         error={touched.barcode && Boolean(errors.barcode)}
         onBlur={handleBlur('barcode')}
+        keyboardType="numeric"
       />
       <HelperText
         text={touched.barcode && errors.barcode}

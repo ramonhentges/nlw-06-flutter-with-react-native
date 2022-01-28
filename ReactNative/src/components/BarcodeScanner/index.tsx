@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
+import { Boleto } from 'broleto';
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
+import BarcodeMask from 'react-native-barcode-mask';
 import { BarCodeReadEvent, RNCamera } from 'react-native-camera';
 import { useTailwind } from 'tailwind-rn/dist';
 import { OutlinedButton } from '..';
-import BarcodeMask from 'react-native-barcode-mask';
-import { Boleto } from 'broleto';
 
 export const BarcodeScanner = ({
   onBarcodeReaded,

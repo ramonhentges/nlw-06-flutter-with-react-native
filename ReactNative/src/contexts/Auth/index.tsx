@@ -6,7 +6,6 @@ import {
 import auth from '@react-native-firebase/auth';
 import { User } from '../../entities';
 import { googleUserToUser } from '../../converter';
-import { useBillStore } from '../../stores';
 import Config from 'react-native-config';
 
 interface AuthContextProps {
@@ -24,7 +23,6 @@ const AuthContext = React.createContext<AuthContextProps>(
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const { getBills, resetStore } = useBillStore();
 
   async function signIn() {
     try {
@@ -65,17 +63,15 @@ export const AuthProvider: React.FC = ({ children }) => {
     (authUser: any) => {
       if (authUser) {
         const convertedUser = googleUserToUser(authUser);
-        getBills();
         setUser(convertedUser);
       } else {
-        resetStore();
         setUser(null);
       }
       if (loading) {
         setLoading(false);
       }
     },
-    [loading, getBills, resetStore],
+    [loading],
   );
 
   useEffect(() => {

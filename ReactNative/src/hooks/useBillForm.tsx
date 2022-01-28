@@ -14,7 +14,7 @@ export const useBillForm = ({
   const formik = useFormik({
     initialValues: {
       name: '',
-      dueDate: initialValues?.dueDate.toLocaleDateString() || '',
+      dueDate: initialValues?.dueDate.toLocaleDateString('pt-BR') || '',
       value: initialValues?.amount.toString().replace('.', ',') || '',
       barcode: initialValues?.barcode || '',
     },

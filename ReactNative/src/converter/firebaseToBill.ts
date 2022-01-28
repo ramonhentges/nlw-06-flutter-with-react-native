@@ -10,5 +10,6 @@ export const firebaseToBill = (key: string, data: any) => {
   if (data?.payDate) {
     bill.payDate = new Date(data.payDate);
   }
+  bill.sended = true;
   return bill;
 };

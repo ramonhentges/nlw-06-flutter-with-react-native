@@ -4,6 +4,7 @@ import { useTailwind } from 'tailwind-rn/dist';
 import {
   BillStatus,
   BottomSheet,
+  LoadingIndicator,
   PayBill,
   StatusBar,
   ToPayInfo,
@@ -14,31 +15,37 @@ import { TextStyles } from '../../themes/text-styles';
 export const Home = () => {
   const tailwind = useTailwind();
   const payBillRef = useRef<any>();
-  const { unpaidBills } = useBillStore();
+  const { unpaidBills, loading } = useBillStore();
   return (
     <>
       <StatusBar />
       <View style={tailwind('bg-background h-full')}>
-        <ToPayInfo quantity={14} />
-        <View style={tailwind('px-6 mt-5')}>
-          <Text style={tailwind(`${TextStyles.titleBoldHeading}`)}>
-            Meus boletos
-          </Text>
-          <View style={tailwind('border-t border-stroke my-5')} />
-          <ScrollView
-            style={tailwind('h-1/2')}
-            contentContainerStyle={tailwind('pb-6')}>
-            {unpaidBills.map(item => (
-              <BillStatus
-                key={item.id}
-                bill={item}
-                onPress={payBillRef.current?.handlePayBill}
-              />
-            ))}
-          </ScrollView>
-        </View>
+        {loading ? (
+          <LoadingIndicator message="Carregando dados" />
+        ) : (
+          <>
+            <ToPayInfo quantity={unpaidBills.length} />
+            <View style={tailwind('px-6 mt-5')}>
+              <Text style={tailwind(`${TextStyles.titleBoldHeading}`)}>
+                Meus boletos
+              </Text>
+              <View style={tailwind('border-t border-stroke my-5')} />
+              <ScrollView
+                style={tailwind('h-1/2')}
+                contentContainerStyle={tailwind('pb-6')}>
+                {unpaidBills.map(item => (
+                  <BillStatus
+                    key={item.id}
+                    bill={item}
+                    onPress={payBillRef.current?.handlePayBill}
+                  />
+                ))}
+              </ScrollView>
+            </View>
+          </>
+        )}
+        <PayBill ref={payBillRef} />
       </View>
-      <PayBill ref={payBillRef} />
       <BottomSheet />
     </>
   );

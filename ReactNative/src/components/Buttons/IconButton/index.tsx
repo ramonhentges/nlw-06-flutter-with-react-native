@@ -6,9 +6,9 @@ import { TextStyles } from '../../../themes';
 
 export const IconButton = ({
   text,
-  color,
+  color = 'primary',
   onPress,
-  className,
+  className = '',
   icon,
 }: IconButtonProps) => {
   const tailwind = useTailwind();
@@ -32,7 +32,7 @@ export const IconButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={tailwind(`flex-row p-4 ${className || ''}`)}>
+      style={tailwind(`flex-row p-4 ${className}`)}>
       <Icon
         style={tailwind(`mr-2 text-primary  ${iconColor[color]}`)}
         name={icon}
@@ -48,7 +48,7 @@ export const IconButton = ({
 type IconButtonProps = {
   icon: string;
   text: string;
-  color: 'primary' | 'secondary' | 'caution';
+  color?: 'primary' | 'secondary' | 'caution';
   onPress: () => void;
   className?: string;
 };

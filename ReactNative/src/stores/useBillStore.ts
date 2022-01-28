@@ -12,25 +12,41 @@ let billsRef = database().ref('bills').child(userId);
 auth().onAuthStateChanged(user => {
   useBillStore.getState().resetStore();
   userId = user?.uid || '';
-  billsRef = database().ref('bills').child(userId);
+  if (user) {
+    billsRef = database().ref('bills').child(userId);
+    useBillStore.getState().getBills();
+  }
 });
 
 export const useBillStore = create<BillStoreProps>(set => ({
   paidBills: [],
   unpaidBills: [],
+  loading: true,
   addBill: (bill: Bill) => {
-    const key = billsRef.push(billToFirebase(bill)).key;
+    const ref = billsRef.push();
 
-    bill.id = key || '';
+    bill.id = ref.key || '';
     set(state => ({
       paidBills: state.paidBills,
       unpaidBills: [bill, ...state.unpaidBills],
     }));
 
+    ref.set(billToFirebase(bill)).then(() => {
+      bill.sended = true;
+
+      set(state => ({
+        paidBills: state.paidBills,
+        unpaidBills: state.unpaidBills.map(cur =>
+          cur.id === bill.id ? bill : cur,
+        ),
+      }));
+    });
+
     return { status: 'ok', data: bill };
   },
   getBills: () => {
     billsRef.on('value', data => {
+      billsRef.off('value');
       const values: any = data.toJSON() || {};
       const keys = Object.keys(values);
       const unpaid: Bill[] = [];
@@ -43,27 +59,42 @@ export const useBillStore = create<BillStoreProps>(set => ({
           unpaid.push(bill);
         }
       }
-      billsRef.off('value');
-      set({ paidBills: paid, unpaidBills: unpaid });
+      set({ loading: false, paidBills: paid, unpaidBills: unpaid });
     });
   },
   resetStore: () => {
-    billsRef.off('value');
-    set({ paidBills: [], unpaidBills: [] });
+    set({ loading: true, paidBills: [], unpaidBills: [] });
   },
   payBill: (bill: Bill) => {
     bill.payDate = new Date();
-    billsRef.child(bill.id).set(billToFirebase(bill));
+    bill.sended = false;
+
     set(state => ({
+      ...state,
       paidBills: [bill, ...state.paidBills],
       unpaidBills: state.unpaidBills.filter(val => val.id !== bill.id),
     }));
+
+    billsRef
+      .child(bill.id)
+      .set(billToFirebase(bill))
+      .then(() => {
+        bill.sended = true;
+
+        set(state => ({
+          paidBills: state.paidBills.map(cur =>
+            cur.id === bill.id ? bill : cur,
+          ),
+          unpaidBills: state.unpaidBills,
+        }));
+      });
     return { status: 'ok', data: bill };
   },
   removeBill: (bill: Bill) => {
     bill.payDate = new Date();
     billsRef.child(bill.id).remove();
     set(state => ({
+      ...state,
       paidBills: state.paidBills.filter(val => val.id !== bill.id),
       unpaidBills: state.unpaidBills.filter(val => val.id !== bill.id),
     }));
@@ -74,6 +105,7 @@ export const useBillStore = create<BillStoreProps>(set => ({
 type BillStoreProps = {
   paidBills: Bill[];
   unpaidBills: Bill[];
+  loading: boolean;
   addBill: (bill: Bill) => Response;
   getBills: () => void;
   resetStore: () => void;

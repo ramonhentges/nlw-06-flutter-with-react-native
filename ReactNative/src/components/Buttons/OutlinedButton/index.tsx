@@ -5,9 +5,9 @@ import { TextStyles } from '../../../themes';
 
 export const OutlinedButton = ({
   text,
-  color,
+  color = 'primary',
   onPress,
-  className,
+  className = '',
 }: OutlindedButtonProps) => {
   const tailwind = useTailwind();
 
@@ -19,9 +19,7 @@ export const OutlinedButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={tailwind(
-        `border border-stroke p-4 bg-background ${className || ''}`,
-      )}>
+      style={tailwind(`border border-stroke p-4 bg-background ${className}`)}>
       <Text style={tailwind(`text-center ${buttonColor[color]}`)}>{text}</Text>
     </TouchableOpacity>
   );
@@ -29,7 +27,7 @@ export const OutlinedButton = ({
 
 type OutlindedButtonProps = {
   text: string;
-  color: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary';
   onPress: () => void;
   className?: string;
 };

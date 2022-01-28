@@ -7,7 +7,7 @@ export const ContainedButton = ({
   text,
   color,
   onPress,
-  className,
+  className = '',
 }: ContainedButtonProps) => {
   const tailwind = useTailwind();
 
@@ -28,9 +28,7 @@ export const ContainedButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={tailwind(
-        `rounded-md p-4 ${background[color]} ${className || ''}`,
-      )}>
+      style={tailwind(`rounded-md p-4 ${background[color]} ${className}`)}>
       <Text style={tailwind(`text-center ${textColor[color]}`)}>{text}</Text>
     </TouchableOpacity>
   );

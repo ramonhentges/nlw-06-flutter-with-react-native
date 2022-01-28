@@ -145,6 +145,10 @@
   align-items: center
 }
 
+.justify-center {
+  justify-content: center
+}
+
 .justify-between {
   justify-content: space-between
 }
@@ -155,6 +159,10 @@
 
 .self-center {
   align-self: center
+}
+
+.justify-self-end {
+  justify-self: end
 }
 
 .break-normal {
@@ -266,6 +274,10 @@
   padding-top: 1rem
 }
 
+.pt-6 {
+  padding-top: 1.5rem
+}
+
 .pl-3 {
   padding-left: 0.75rem
 }
@@ -322,6 +334,11 @@
   font-weight: 700
 }
 
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(255 148 26 / var(--tw-text-opacity))
+}
+
 .text-background {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity))
@@ -335,11 +352,6 @@
 .text-heading {
   --tw-text-opacity: 1;
   color: rgb(88 86 102 / var(--tw-text-opacity))
-}
-
-.text-primary {
-  --tw-text-opacity: 1;
-  color: rgb(255 148 26 / var(--tw-text-opacity))
 }
 
 .text-body {
@@ -364,4 +376,9 @@
 
 .outline {
   outline-style: solid
+}
+
+.hover\:text-secondary:hover {
+  --tw-text-opacity: 1;
+  color: rgb(88 86 102 / var(--tw-text-opacity))
 }

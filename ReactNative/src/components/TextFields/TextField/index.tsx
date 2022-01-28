@@ -12,7 +12,7 @@ import { TextStyles, theme } from '../../../themes';
 
 export const TextField = ({
   startIcon,
-  className,
+  className = '',
   onFocus,
   onBlur,
   error = false,
@@ -55,7 +55,7 @@ export const TextField = ({
   return (
     <View
       style={tailwind(
-        `flex-row items-center border-b ${borderColor} ${className || ''}`,
+        `flex-row items-center border-b ${borderColor} ${className}`,
       )}>
       {startIcon && <Icon style={iconStyle} name={startIcon} size={24} />}
       <View

@@ -9,3 +9,4 @@ export * from './BarcodeScanner';
 export * from './PayBill';
 export * from './StatusBar';
 export * from './HelperText';
+export * from './LoadingIndicator';
