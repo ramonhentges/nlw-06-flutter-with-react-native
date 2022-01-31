@@ -11,9 +11,11 @@ let billsRef = database().ref('bills').child(userId);
 
 auth().onAuthStateChanged(user => {
   useBillStore.getState().resetStore();
+  billsRef.keepSynced(false);
   userId = user?.uid || '';
   if (user) {
     billsRef = database().ref('bills').child(userId);
+    billsRef.keepSynced(true);
     useBillStore.getState().getBills();
   }
 });
@@ -36,17 +38,14 @@ export const useBillStore = create<BillStoreProps>(set => ({
 
       set(state => ({
         paidBills: state.paidBills,
-        unpaidBills: state.unpaidBills.map(cur =>
-          cur.id === bill.id ? bill : cur,
-        ),
+        unpaidBills: state.unpaidBills.map(updateBillOnMap(bill)),
       }));
     });
 
     return { status: 'ok', data: bill };
   },
   getBills: () => {
-    billsRef.on('value', data => {
-      billsRef.off('value');
+    billsRef.once('value', data => {
       const values: any = data.toJSON() || {};
       const keys = Object.keys(values);
       const unpaid: Bill[] = [];
@@ -72,7 +71,7 @@ export const useBillStore = create<BillStoreProps>(set => ({
     set(state => ({
       ...state,
       paidBills: [bill, ...state.paidBills],
-      unpaidBills: state.unpaidBills.filter(val => val.id !== bill.id),
+      unpaidBills: state.unpaidBills.filter(removeBillOnFilter(bill)),
     }));
 
     billsRef
@@ -82,25 +81,34 @@ export const useBillStore = create<BillStoreProps>(set => ({
         bill.sended = true;
 
         set(state => ({
-          paidBills: state.paidBills.map(cur =>
-            cur.id === bill.id ? bill : cur,
-          ),
+          paidBills: state.paidBills.map(updateBillOnMap(bill)),
           unpaidBills: state.unpaidBills,
         }));
       });
     return { status: 'ok', data: bill };
   },
   removeBill: (bill: Bill) => {
-    bill.payDate = new Date();
     billsRef.child(bill.id).remove();
     set(state => ({
       ...state,
-      paidBills: state.paidBills.filter(val => val.id !== bill.id),
-      unpaidBills: state.unpaidBills.filter(val => val.id !== bill.id),
+      paidBills: state.paidBills.filter(removeBillOnFilter(bill)),
+      unpaidBills: state.unpaidBills.filter(removeBillOnFilter(bill)),
     }));
     return { status: 'ok', data: bill };
   },
 }));
+
+const updateBillOnMap = (bill: Bill) => {
+  return function update(current: Bill) {
+    return current.id === bill.id ? bill : current;
+  };
+};
+
+const removeBillOnFilter = (bill: Bill) => {
+  return function remove(current: Bill) {
+    return current.id !== bill.id;
+  };
+};
 
 type BillStoreProps = {
   paidBills: Bill[];

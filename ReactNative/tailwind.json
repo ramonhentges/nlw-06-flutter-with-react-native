@@ -76,14 +76,14 @@
 			"marginBottom": 20
 		}
 	},
-	"mr-2": {
-		"style": {
-			"marginRight": 8
-		}
-	},
 	"ml-2": {
 		"style": {
 			"marginLeft": 8
+		}
+	},
+	"mr-2": {
+		"style": {
+			"marginRight": 8
 		}
 	},
 	"mr-5": {
@@ -488,12 +488,6 @@
 	"outline": {
 		"style": {
 			"outlineStyle": "solid"
-		}
-	},
-	"hover:text-secondary:hover": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(88 86 102 / var(--tw-text-opacity))"
 		}
 	}
 }

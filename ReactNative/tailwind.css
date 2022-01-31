@@ -61,12 +61,12 @@
   margin-bottom: 1.25rem
 }
 
-.mr-2 {
-  margin-right: 0.5rem
-}
-
 .ml-2 {
   margin-left: 0.5rem
+}
+
+.mr-2 {
+  margin-right: 0.5rem
 }
 
 .mr-5 {
@@ -376,9 +376,4 @@
 
 .outline {
   outline-style: solid
-}
-
-.hover\:text-secondary:hover {
-  --tw-text-opacity: 1;
-  color: rgb(88 86 102 / var(--tw-text-opacity))
 }
