@@ -4,6 +4,7 @@ import { useTailwind } from 'tailwind-rn/dist';
 import {
   BillStatus,
   BottomSheet,
+  LeftRightView,
   LoadingIndicator,
   PayBill,
   StatusBar,
@@ -25,7 +26,7 @@ export const Home = () => {
         ) : (
           <>
             <ToPayInfo quantity={unpaidBills.length} />
-            <View style={tailwind('px-6 mt-5')}>
+            <LeftRightView className={'px-6 mt-5'}>
               <Text style={tailwind(`${TextStyles.titleBoldHeading}`)}>
                 Meus boletos
               </Text>
@@ -47,7 +48,7 @@ export const Home = () => {
                   Não há boletos cadastrados para pagar :D
                 </Text>
               )}
-            </View>
+            </LeftRightView>
           </>
         )}
         <PayBill ref={payBillRef} />

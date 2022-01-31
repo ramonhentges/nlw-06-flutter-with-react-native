@@ -4,6 +4,7 @@ import { useTailwind } from 'tailwind-rn/dist';
 import {
   BillStatus,
   BottomSheet,
+  LeftRightView,
   LoadingIndicator,
   StatusBar,
 } from '../../components';
@@ -21,7 +22,7 @@ export const Extract = () => {
         {loading ? (
           <LoadingIndicator message="Carregando dados" />
         ) : (
-          <View style={tailwind('px-6 mt-5')}>
+          <LeftRightView className={'px-6 mt-5'} direction="left">
             <View style={tailwind('flex-row justify-between items-center')}>
               <Text style={tailwind(`${TextStyles.titleBoldHeading}`)}>
                 Meus extratos
@@ -38,7 +39,7 @@ export const Extract = () => {
                 <BillStatus key={idx} bill={item} />
               ))}
             </ScrollView>
-          </View>
+          </LeftRightView>
         )}
       </View>
       <BottomSheet />
