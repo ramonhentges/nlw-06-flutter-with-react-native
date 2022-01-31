@@ -30,17 +30,23 @@ export const Home = () => {
                 Meus boletos
               </Text>
               <View style={tailwind('border-t border-stroke my-5')} />
-              <ScrollView
-                style={tailwind('h-1/2')}
-                contentContainerStyle={tailwind('pb-6')}>
-                {unpaidBills.map(item => (
-                  <BillStatus
-                    key={item.id}
-                    bill={item}
-                    onPress={payBillRef.current?.handlePayBill}
-                  />
-                ))}
-              </ScrollView>
+              {unpaidBills.length > 0 ? (
+                <ScrollView
+                  style={tailwind('h-1/2')}
+                  contentContainerStyle={tailwind('pb-6')}>
+                  {unpaidBills.map(item => (
+                    <BillStatus
+                      key={item.id}
+                      bill={item}
+                      onPress={payBillRef.current?.handlePayBill}
+                    />
+                  ))}
+                </ScrollView>
+              ) : (
+                <Text style={tailwind(`${TextStyles.trailingRegular}`)}>
+                  Não há boletos cadastrados para pagar :D
+                </Text>
+              )}
             </View>
           </>
         )}
